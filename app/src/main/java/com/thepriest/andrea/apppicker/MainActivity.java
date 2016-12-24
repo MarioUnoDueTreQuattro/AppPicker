@@ -1,6 +1,8 @@
 package com.thepriest.andrea.apppicker;
 
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.http.HttpVersion;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -43,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else Log.d(TAG, "onCreate: NO Intent.ACTION_SEND");
 */
-
-
         Intent intent = this.getIntent();
+        Log.d(TAG, "onCreate: " + intent.toString());
         String urlText = intent.getDataString();
+        //Uri uri = findUrlInString(urlText);
         Uri uri = Uri.parse(urlText);
         if (uri != null) {
             Intent i = new Intent(Intent.ACTION_VIEW, uri);
@@ -55,33 +59,46 @@ public class MainActivity extends AppCompatActivity {
             String string2 = intent.getType();
             // i.setAction(string);
             if (urlText.startsWith("http")) {
+                Log.d(TAG, "onCreate: http");
                 i.setDataAndType(uri, "text/html");
+                // i.setData(uri);
             } else {
+                Log.d(TAG, "onCreate: NO http");
                 i.setDataAndType(intent.getData(), string2);
             }
             // i.setType("text/plain");
-//            Log.v(TAG, (String) ("action " + string));
-//            Log.v(TAG, (String) ("type " + string2));
-//            Log.d(TAG, "onCreate urlText: " + urlText);
-            startActivity(Intent.createChooser(i, /*getString(R.string.open) +*/ urlText));
+            Log.v(TAG, (String) ("action " + string));
+            Log.v(TAG, (String) ("type " + string2));
+            Log.d(TAG, "onCreate urlText: " + urlText);
+            //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            //List<ResolveInfo> allActivities = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
+           // intent.setSelector(i);
+            startActivity(Intent.createChooser(i, urlText));
+
+        //   Intent chooser = Intent.createChooser(i, urlText);
+          //  if (intent.resolveActivity(getPackageManager()) != null) startActivity(chooser);
+
+            //startActivity(Intent.createChooser(i, /*getString(R.string.open) +*/ urlText));
 //                    Intent sendIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.maidofknowledge.com"));
 //                    Intent chooser = Intent.createChooser(sendIntent, "Choose Your Browser");
 //                    if (sendIntent.resolveActivity(getPackageManager()) != null) {
 //                        startActivity(chooser);
 //                    }
         } else {
-           // Log.d(TAG, "onCreate: uri == null");
+            Log.d(TAG, "onCreate: uri == null");
             String string = intent.getAction();
             String string2 = intent.getType();
-//            Log.v((String) "action", (String) ("" + string));
-//            Log.v((String) "type", (String) ("" + string2));
+            Log.v(TAG, (String) ("action " + string));
+            Log.v(TAG, (String) ("type " + string2));
+            Log.d(TAG, "onCreate urlText: " + urlText);
             Intent intent2 = new Intent();
             intent2.setAction(string);
             intent2.setDataAndType(intent.getData(), string2);
-            this.startActivity(Intent.createChooser( intent2, "Open " + urlText));
+            this.startActivity(Intent.createChooser(intent2, "Open " + urlText));
         }
 
         this.finish();
+
     }
 
     private Uri findUrlInString(String urlText) {
