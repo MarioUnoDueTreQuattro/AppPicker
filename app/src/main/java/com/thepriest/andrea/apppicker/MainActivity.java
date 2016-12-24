@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             if (urlText.startsWith("http")) {
                 Log.d(TAG, "onCreate: http");
                 i.setDataAndType(uri, "text/html");
+               // i.putExtra(Intent.EXTRA_TEXT,urlText);
                 // i.setData(uri);
             } else {
                 Log.d(TAG, "onCreate: NO http");
@@ -73,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
             //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             //List<ResolveInfo> allActivities = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
            // intent.setSelector(i);
-            startActivity(Intent.createChooser(i, urlText));
-
+           Intent newInt= Intent.createChooser(i, urlText);
+startActivity(newInt);
         //   Intent chooser = Intent.createChooser(i, urlText);
           //  if (intent.resolveActivity(getPackageManager()) != null) startActivity(chooser);
 
