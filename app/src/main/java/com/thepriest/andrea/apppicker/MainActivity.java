@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
 import org.apache.http.HttpVersion;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle bundle) {
 //        super.onCreate(savedInstanceState);
@@ -49,27 +51,39 @@ public class MainActivity extends AppCompatActivity {
         if (uri != null) {
             Intent i = new Intent(Intent.ACTION_VIEW, uri);
             //i.setData(uri);
-            i.setDataAndType(uri, "text/html");
+            String string = intent.getAction();
+            String string2 = intent.getType();
+            // i.setAction(string);
+            if (urlText.startsWith("http")) {
+                i.setDataAndType(uri, "text/html");
+            } else {
+                i.setDataAndType(intent.getData(), string2);
+            }
             // i.setType("text/plain");
-            startActivity(Intent.createChooser(i, getString(R.string.open) + urlText));
+//            Log.v(TAG, (String) ("action " + string));
+//            Log.v(TAG, (String) ("type " + string2));
+//            Log.d(TAG, "onCreate urlText: " + urlText);
+            startActivity(Intent.createChooser(i, /*getString(R.string.open) +*/ urlText));
 //                    Intent sendIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.maidofknowledge.com"));
 //                    Intent chooser = Intent.createChooser(sendIntent, "Choose Your Browser");
 //                    if (sendIntent.resolveActivity(getPackageManager()) != null) {
 //                        startActivity(chooser);
 //                    }
         } else {
+           // Log.d(TAG, "onCreate: uri == null");
             String string = intent.getAction();
             String string2 = intent.getType();
-            Log.v((String)"action", (String)("" + string));
-            Log.v((String)"type", (String)("" + string2));
+//            Log.v((String) "action", (String) ("" + string));
+//            Log.v((String) "type", (String) ("" + string2));
             Intent intent2 = new Intent();
             intent2.setAction(string);
             intent2.setDataAndType(intent.getData(), string2);
-            this.startActivity(Intent.createChooser((Intent)intent2, (CharSequence)"Open With"));
+            this.startActivity(Intent.createChooser( intent2, "Open with"));
         }
 
         this.finish();
     }
+
     private Uri findUrlInString(String urlText) {
 
         int indexOfUrl = urlText.toLowerCase().indexOf(HttpVersion.HTTP.toLowerCase());
