@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent2 = new Intent();
             intent2.setAction(string);
             intent2.setDataAndType(intent.getData(), string2);
-            this.startActivity(Intent.createChooser( intent2, "Open with"));
+            this.startActivity(Intent.createChooser( intent2, "Open " + urlText));
         }
 
         this.finish();
