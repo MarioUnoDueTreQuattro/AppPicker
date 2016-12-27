@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             if (urlText.startsWith("http")) {
                 Log.d(TAG, "onCreate: http");
                 i.setDataAndType(uri, "text/html");
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                // i.putExtra(Intent.EXTRA_TEXT,urlText);
                 // i.setData(uri);
             } else {
