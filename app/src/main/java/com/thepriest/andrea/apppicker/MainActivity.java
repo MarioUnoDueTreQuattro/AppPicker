@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             //List<ResolveInfo> allActivities = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             // intent.setSelector(i);
             Intent newInt = Intent.createChooser(i, urlText);
+            //LauncherActivity.launchBrowser(newInt);
             startActivity(cleanIntent(newInt));
             //   Intent chooser = Intent.createChooser(i, urlText);
             //  if (intent.resolveActivity(getPackageManager()) != null) startActivity(chooser);
