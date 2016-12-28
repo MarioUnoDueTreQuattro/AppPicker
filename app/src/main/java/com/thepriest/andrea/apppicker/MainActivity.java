@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
             if (urlText.startsWith("http")) {
                 Log.d(TAG, "onCreate: http");
                 i.setDataAndType(uri, "text/html");
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-               // i.putExtra(Intent.EXTRA_TEXT,urlText);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                // i.putExtra(Intent.EXTRA_TEXT,urlText);
                 // i.setData(uri);
             } else {
                 Log.d(TAG, "onCreate: NO http");
@@ -74,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate urlText: " + urlText);
             //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             //List<ResolveInfo> allActivities = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
-           // intent.setSelector(i);
-           Intent newInt= Intent.createChooser(i, urlText);
-startActivity(newInt);
-        //   Intent chooser = Intent.createChooser(i, urlText);
-          //  if (intent.resolveActivity(getPackageManager()) != null) startActivity(chooser);
+            // intent.setSelector(i);
+            Intent newInt = Intent.createChooser(i, urlText);
+            startActivity(cleanIntent(newInt));
+            //   Intent chooser = Intent.createChooser(i, urlText);
+            //  if (intent.resolveActivity(getPackageManager()) != null) startActivity(chooser);
 
             //startActivity(Intent.createChooser(i, /*getString(R.string.open) +*/ urlText));
 //                    Intent sendIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.maidofknowledge.com"));
@@ -96,11 +96,28 @@ startActivity(newInt);
             Intent intent2 = new Intent();
             intent2.setAction(string);
             intent2.setDataAndType(intent.getData(), string2);
-            this.startActivity(Intent.createChooser(intent2, "Open " + urlText));
+            Intent newInt = Intent.createChooser(intent2, urlText);
+            //startActivity(cleanIntent(newInt));
+            this.startActivity(Intent.createChooser(cleanIntent(intent2), "Open " + urlText));
+        //    this.startActivity(Intent.createChooser(cleanIntent(intent2), "Open " + urlText));
         }
 
         this.finish();
 
+    }
+
+    private Intent cleanIntent(Intent passedIntent) {
+       //Intent myIntent= passedIntent.getSelector();
+        List<ResolveInfo> launchables=getPackageManager().queryIntentActivities(passedIntent, 0);
+      for (ResolveInfo resInfo : launchables){
+          Log.d(TAG, "cleanIntent: "+ resInfo.resolvePackageName);
+          if (resInfo.resolvePackageName=="com.thepriest.andrea.apppicker"){
+              Log.d(TAG, "cleanIntent: cleaning...");
+              launchables.remove(resInfo);
+          }
+      }
+
+        return passedIntent;
     }
 
     private Uri findUrlInString(String urlText) {
