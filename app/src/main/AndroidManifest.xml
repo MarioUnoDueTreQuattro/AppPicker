@@ -14,7 +14,9 @@
             android:name=".MainActivity"
             android:label="App Picker"
             android:theme="@android:style/Theme.NoDisplay"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:excludeFromRecents="true"
+            >
 
             <!--
             <intent-filter>
@@ -26,13 +28,6 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="resource/folder" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" />
-                <data android:scheme="https" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -332,6 +327,13 @@
                 <data android:pathPattern=".*\\.3gp2" />
                 <data android:pathPattern=".*\\.webm" />
                 <data android:pathPattern=".*\\.rm" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".LauncherActivity"
