@@ -2,6 +2,7 @@ package com.thepriest.andrea.apppicker;
 
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -51,35 +52,42 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: " + intent.toString());
         String urlText = intent.getDataString();
         //Uri uri = findUrlInString(urlText);
+        if (urlText == null) urlText = "";
         Uri uri = Uri.parse(urlText);
         if (uri != null) {
-            Intent i = new Intent(Intent.ACTION_VIEW, uri);
+            Intent i = null;
+            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK)||intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER") )
+                i = new Intent("android.intent.action.RINGTONE_PICKER", uri);
+            else i = new Intent(Intent.ACTION_VIEW, uri);
 //            Intent i = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN,
 //                    Intent.CATEGORY_APP_BROWSER);
             //i.setData(uri);
-            String string = intent.getAction();
-            String string2 = intent.getType();
+            String stringAction = intent.getAction();
+            String stringType = intent.getType();
             // i.setAction(string);
             if (urlText.startsWith("http")) {
                 Log.d(TAG, "onCreate: http");
                 i.setDataAndType(uri, "text/html");
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-                 //i.putExtra(Intent.EXTRA_TEXT,urlText);
-                 //i.setData(uri);
+                //i.putExtra(Intent.EXTRA_TEXT,urlText);
+                //i.setData(uri);
             } else {
                 Log.d(TAG, "onCreate: NO http");
-                i.setDataAndType(intent.getData(), string2);
+                i.setDataAndType(intent.getData(), stringType);
             }
             //i.addCategory(Intent.CATEGORY_APP_BROWSER);
             //i.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER);
             // i.setType("text/plain");
-            Log.v(TAG, (String) ("action " + string));
-            Log.v(TAG, (String) ("type " + string2));
+            Log.v(TAG, (String) ("action " + stringAction));
+            Log.v(TAG, (String) ("type " + stringType));
             Log.d(TAG, "onCreate urlText: " + urlText);
             //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             //List<ResolveInfo> allActivities = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             // intent.setSelector(i);
-            Intent newInt = Intent.createChooser(i, urlText);
+            Intent newInt = null;
+            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK )|| intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER"))
+                newInt = Intent.createChooser(i,/* i.getAction() + " " +*/ i.getType());
+            else newInt = Intent.createChooser(i, urlText);
             //LauncherActivity.launchBrowser(newInt);
             newInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
@@ -106,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             Intent newInt = Intent.createChooser(intent2, urlText);
             //startActivity(cleanIntent(newInt));
             this.startActivity(Intent.createChooser(cleanIntent(intent2), "Open " + urlText));
-        //    this.startActivity(Intent.createChooser(cleanIntent(intent2), "Open " + urlText));
+            //    this.startActivity(Intent.createChooser(cleanIntent(intent2), "Open " + urlText));
         }
 
         this.finish();
@@ -114,16 +122,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Intent cleanIntent(Intent passedIntent) {
-       //Intent myIntent= passedIntent.getSelector();
-        List<ResolveInfo> launchables=getPackageManager().queryIntentActivities(passedIntent, 0);
-      for (ResolveInfo resInfo : launchables){
-          Log.d(TAG, "cleanIntent: "+ resInfo.resolvePackageName);
-          if (resInfo.resolvePackageName=="com.thepriest.andrea.apppicker"){
-              Log.d(TAG, "cleanIntent: cleaning...");
-              launchables.remove(resInfo);
-          }
-      }
-
+        //Intent myIntent= passedIntent.getSelector();
+        List<ResolveInfo> launchables = getPackageManager().queryIntentActivities(passedIntent, PackageManager.MATCH_ALL);
+        for (ResolveInfo resInfo : launchables) {
+            Log.d(TAG, "cleanIntent: " + resInfo.resolvePackageName);
+            if (resInfo.resolvePackageName!=null) {
+                if (resInfo.resolvePackageName.equalsIgnoreCase("com.thepriest.andrea.apppicker")) {
+                    Log.d(TAG, "cleanIntent: cleaning...");
+                    launchables.remove(resInfo);
+                }
+            }
+        }
         return passedIntent;
     }
 
