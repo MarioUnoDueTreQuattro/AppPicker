@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle bundle) {
+        String stringAction = null;
+        String stringType = null;
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
         super.onCreate(bundle);
@@ -62,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
 //            Intent i = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN,
 //                    Intent.CATEGORY_APP_BROWSER);
             //i.setData(uri);
-            String stringAction = intent.getAction();
-            String stringType = intent.getType();
+            stringAction = intent.getAction();
+            stringType = intent.getType();
             // i.setAction(string);
             if (urlText.startsWith("http")) {
                 Log.d(TAG, "onCreate: http");
@@ -103,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
 //                    }
         } else {
             Log.d(TAG, "onCreate: uri == null");
-            String string = intent.getAction();
-            String string2 = intent.getType();
-            Log.v(TAG, (String) ("action " + string));
-            Log.v(TAG, (String) ("type " + string2));
+            stringAction = intent.getAction();
+            stringType = intent.getType();
+            Log.v(TAG, (String) ("action " + stringAction));
+            Log.v(TAG, (String) ("type " + stringType));
             Log.d(TAG, "onCreate urlText: " + urlText);
             Intent intent2 = new Intent();
-            intent2.setAction(string);
-            intent2.setDataAndType(intent.getData(), string2);
+            intent2.setAction(stringAction);
+            intent2.setDataAndType(intent.getData(), stringType);
             Intent newInt = Intent.createChooser(intent2, urlText);
             //startActivity(cleanIntent(newInt));
             this.startActivity(Intent.createChooser(cleanIntent(intent2), "Open " + urlText));
