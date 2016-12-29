@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.parse(urlText);
         if (uri != null) {
             Intent i = new Intent(Intent.ACTION_VIEW, uri);
+//            Intent i = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN,
+//                    Intent.CATEGORY_APP_BROWSER);
             //i.setData(uri);
             String string = intent.getAction();
             String string2 = intent.getType();
@@ -62,12 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onCreate: http");
                 i.setDataAndType(uri, "text/html");
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-                // i.putExtra(Intent.EXTRA_TEXT,urlText);
-                // i.setData(uri);
+                 //i.putExtra(Intent.EXTRA_TEXT,urlText);
+                 //i.setData(uri);
             } else {
                 Log.d(TAG, "onCreate: NO http");
                 i.setDataAndType(intent.getData(), string2);
             }
+            //i.addCategory(Intent.CATEGORY_APP_BROWSER);
+            //i.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER);
             // i.setType("text/plain");
             Log.v(TAG, (String) ("action " + string));
             Log.v(TAG, (String) ("type " + string2));
@@ -77,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
             // intent.setSelector(i);
             Intent newInt = Intent.createChooser(i, urlText);
             //LauncherActivity.launchBrowser(newInt);
+            newInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                    Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
             startActivity(cleanIntent(newInt));
             //   Intent chooser = Intent.createChooser(i, urlText);
             //  if (intent.resolveActivity(getPackageManager()) != null) startActivity(chooser);
