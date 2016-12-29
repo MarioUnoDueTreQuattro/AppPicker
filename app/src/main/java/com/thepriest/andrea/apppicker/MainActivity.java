@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.parse(urlText);
         if (uri != null) {
             Intent i = null;
-            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK) || intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER"))
+            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK) || intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER")|| intent.getAction().equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA")|| intent.getAction().equalsIgnoreCase("android.media.action.IMAGE_CAPTURE"))
                 i = new Intent("android.intent.action.RINGTONE_PICKER", uri);
             else i = new Intent(Intent.ACTION_VIEW, uri);
 //            Intent i = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN,
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             //List<ResolveInfo> allActivities = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             // intent.setSelector(i);
             Intent newInt = null;
-            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK) || intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER"))
+            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK) || intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER")|| intent.getAction().equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA")|| intent.getAction().equalsIgnoreCase("android.media.action.IMAGE_CAPTURE"))
                 newInt = Intent.createChooser(i,/* i.getAction() + " " +*/ i.getType());
             else newInt = Intent.createChooser(i, urlText);
             //LauncherActivity.launchBrowser(newInt);
