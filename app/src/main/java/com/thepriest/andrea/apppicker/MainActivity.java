@@ -83,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
+                chooseIntent = new Intent(sAction, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("android.media.action.IMAGE_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -93,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("android.intent.action.RINGTONE_PICKER")) {
                 chooseIntent = new Intent(sAction, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase(Intent.ACTION_SENDTO)) {
+                chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_VIEW)) {
