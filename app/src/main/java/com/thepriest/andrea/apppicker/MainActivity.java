@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,8 +85,18 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
-                chooseIntent = new Intent(sAction, uri);
-                chooseIntent.setDataAndType(intent.getData(), stringType);
+                if (Build.VERSION.SDK_INT <19){
+                    chooseIntent = new Intent();
+                    chooseIntent.setType(stringType);
+                    chooseIntent.setAction(Intent.ACTION_GET_CONTENT);
+                } else {
+                    chooseIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    chooseIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                    chooseIntent.setType(stringType);
+                }
+//                chooseIntent = new Intent(Intent.ACTION_GET_CONTENT, uri);
+//chooseIntent.setType(stringType);
+                //chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("android.media.action.IMAGE_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
