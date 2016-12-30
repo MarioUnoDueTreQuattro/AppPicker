@@ -85,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
+                Log.d(TAG, "onCreate: GET_CONTENT");
+/*
+                chooseIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                chooseIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                chooseIntent.setType(stringType);
+                this.startActivityForResult(chooseIntent, 1);
+                    return;
+*/
                 if (Build.VERSION.SDK_INT <19){
                     chooseIntent = new Intent();
                     chooseIntent.setType(stringType);
@@ -93,11 +101,22 @@ public class MainActivity extends AppCompatActivity {
                     chooseIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     chooseIntent.addCategory(Intent.CATEGORY_OPENABLE);
                     chooseIntent.setType(stringType);
+                     //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                    //startActivityForResult(chooseIntent,1);
+                    return;
                 }
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
 //                chooseIntent = new Intent(Intent.ACTION_GET_CONTENT, uri);
+/*
+               // chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+*/
 //chooseIntent.setType(stringType);
                 //chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+/*
+                newInt = Intent.createChooser(chooseIntent,*/
+/* i.getAction() + " " +*//*
+ chooseIntent.getType());
+*/
             } else if (sAction.equalsIgnoreCase("android.media.action.IMAGE_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -205,6 +224,16 @@ public class MainActivity extends AppCompatActivity {
 
         this.finish();
 
+    }
+
+    protected void onActivityResult(int n, int n2, Intent intent) {
+        Log.d(TAG, "onActivityResult() called with: n = [" + n + "], n2 = [" + n2 + "], intent = [" + intent + "]");
+        if (n == 1) {
+            this.setResult(n2, intent);
+            this.finish();
+            return;
+        }
+        super.onActivityResult(n, n2, intent);
     }
 
     private Intent cleanIntent(Intent passedIntent) {
