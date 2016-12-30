@@ -22,11 +22,10 @@ import static android.content.pm.PackageManager.MATCH_ALL;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private String sAction;
 
     @Override
     protected void onCreate(Bundle bundle) {
-        String stringAction = null;
-        String stringType = null;
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
         super.onCreate(bundle);
@@ -60,15 +59,71 @@ public class MainActivity extends AppCompatActivity {
         launchIntent();
         if (true) return;
 */
+        String stringAction = null;
+        String stringType = null;
+        Intent chooseIntent = null;
+        Intent newInt = null;
         Intent intent = this.getIntent();
         Log.d(TAG, "onCreate: " + intent.toString());
+        stringAction = intent.getAction();
+        stringType = intent.getType();
+        Log.v(TAG, "action " + stringAction);
+        Log.v(TAG, "type " + stringType);
         String urlText = intent.getDataString();
         //Uri uri = findUrlInString(urlText);
         if (urlText == null) urlText = "";
         Uri uri = Uri.parse(urlText);
         if (uri != null) {
+            sAction = intent.getAction();
+            if (sAction.equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA")) {
+                chooseIntent = new Intent(sAction, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase(Intent.ACTION_PICK)) {
+                chooseIntent = new Intent(sAction, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase("android.media.action.IMAGE_CAPTURE")) {
+                chooseIntent = new Intent(sAction, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase("com.whatsapp.action.WHATSAPP_RECORDING")) {
+                chooseIntent = new Intent(sAction, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase("android.intent.action.RINGTONE_PICKER")) {
+                chooseIntent = new Intent(sAction, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase(Intent.ACTION_VIEW)) {
+                chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
+                if (urlText.startsWith("http")) {
+                    Log.d(TAG, "onCreate: http");
+                    chooseIntent.setDataAndType(uri, "text/html");
+                    chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                    chooseIntent.addCategory("android.intent.category.BROWSABLE");
+                    //i.putExtra(Intent.EXTRA_TEXT,urlText);
+                    //i.setData(uri);
+                } else {
+                    Log.d(TAG, "onCreate: NO http");
+                    chooseIntent.setDataAndType(intent.getData(), stringType);
+                }
+                chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                newInt = Intent.createChooser(chooseIntent, urlText);
+            } else {
+                Toast.makeText(this, sAction, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onCreate sAction: " + sAction);
+            }
+        }
+        startActivity(newInt);
+        this.finish();
+        /**
+         * return
+         */
+        if (true) return;
+        if (uri != null) {
             Intent i = null;
-            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK) || intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER")|| intent.getAction().equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA")|| intent.getAction().equalsIgnoreCase("android.media.action.IMAGE_CAPTURE"))
+            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK) || intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER") || intent.getAction().equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA") || intent.getAction().equalsIgnoreCase("android.media.action.IMAGE_CAPTURE"))
                 i = new Intent("android.intent.action.RINGTONE_PICKER", uri);
             else i = new Intent(Intent.ACTION_VIEW, uri);
 //            Intent i = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN,
@@ -96,8 +151,8 @@ public class MainActivity extends AppCompatActivity {
             //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             //List<ResolveInfo> allActivities = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
             // intent.setSelector(i);
-            Intent newInt = null;
-            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK) || intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER")|| intent.getAction().equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA")|| intent.getAction().equalsIgnoreCase("android.media.action.IMAGE_CAPTURE"))
+            newInt = null;
+            if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PICK) || intent.getAction().equalsIgnoreCase("android.intent.action.RINGTONE_PICKER") || intent.getAction().equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA") || intent.getAction().equalsIgnoreCase("android.media.action.IMAGE_CAPTURE"))
                 newInt = Intent.createChooser(i,/* i.getAction() + " " +*/ i.getType());
             else newInt = Intent.createChooser(i, urlText);
             //LauncherActivity.launchBrowser(newInt);
@@ -123,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent2 = new Intent();
             intent2.setAction(stringAction);
             intent2.setDataAndType(intent.getData(), stringType);
-            Intent newInt = Intent.createChooser(intent2, urlText);
+            newInt = Intent.createChooser(intent2, urlText);
             //startActivity(cleanIntent(newInt));
             this.startActivity(Intent.createChooser(cleanIntent(intent2), "Open " + urlText));
             //    this.startActivity(Intent.createChooser(cleanIntent(intent2), "Open " + urlText));
@@ -218,10 +273,10 @@ public class MainActivity extends AppCompatActivity {
 */
             //this.item = getHandleItem(id);
             PackageManager packageManager = getPackageManager();
-            intent=cleanIntent(intent);
+            intent = cleanIntent(intent);
             List<ResolveInfo> resInfo = packageManager.queryIntentActivities(intent, MATCH_ALL);
             Log.d(TAG, "launchIntent resInfo.size(): " + resInfo.size());
-            for (ResolveInfo ress : resInfo){
+            for (ResolveInfo ress : resInfo) {
                 Log.d(TAG, "launchIntent: " + ress.toString());
             }
 
@@ -240,12 +295,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 finish();
             }
-                    Intent chooserIntent=Intent.createChooser(intent,"ggggggggg");
-                    //chooserIntent=cleanIntent(chooserIntent);
-                    chooserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            Intent chooserIntent = Intent.createChooser(intent, "ggggggggg");
+            //chooserIntent=cleanIntent(chooserIntent);
+            chooserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
 
-                    startActivity(chooserIntent);
-                    return;
+            startActivity(chooserIntent);
+            return;
         }
     }
 }
