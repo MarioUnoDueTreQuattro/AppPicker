@@ -4,37 +4,48 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class LauncherActivity extends AppCompatActivity {
     private static final String TAG = "LauncherActivity";
-private static Context mContext;
+    private static Context mContext;
+    private DrawerLayout drawerLayout;
+    private WebView webView;
+    private NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext=getApplicationContext();
-         setContentView(R.layout.activity_launcher);
+        mContext = getApplicationContext();
+        setContentView(R.layout.activity_launcher);
         //finish();
-
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        webView = (WebView) findViewById(R.id.webView);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        //Uri path = Uri.parse("android.resource://com.thepriest.andrea.apppicker/" + R.raw.help);
+        webView.loadUrl("file:///android_res/raw/help.html");
     }
 
     public static void launchBrowser(Intent intent) {
         Log.d(TAG, "launchBrowser: ");
-        Log.d(TAG, "launchBrowser: " +intent.getAction());
+        Log.d(TAG, "launchBrowser: " + intent.getAction());
         if (intent != null) {
             if (intent.getAction().equals(Intent.ACTION_CHOOSER)) {
                 if (BuildConfig.DEBUG)
                     Log.d(TAG, "intent.getAction().equals(Intent.ACTION_SEND)");
                 //String urlText = intent.getStringExtra(Intent.EXTRA_TEXT);
-                ClipData clip=intent.getClipData();
-                String urlText =  clip.getItemAt(0).getUri().toString();
+                ClipData clip = intent.getClipData();
+                String urlText = clip.getItemAt(0).getUri().toString();
                 //String urlText = intent.getDataString();
-                Log.d(TAG, "launchBrowser: "+ urlText);
+                Log.d(TAG, "launchBrowser: " + urlText);
                 //Uri uri = findUrlInString(urlText);
                 Uri uri = Uri.parse(urlText);
                 //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
