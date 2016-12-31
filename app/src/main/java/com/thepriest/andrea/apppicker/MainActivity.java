@@ -91,10 +91,10 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 chooseIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 chooseIntent.setType(stringType);
-                this.startActivityForResult(chooseIntent, 1);
+                this.startActivityForResult(chooseIntent, GET_CONTENT_RESULT_CODE);
                     return;
 */
-                if (Build.VERSION.SDK_INT <19){
+                if (Build.VERSION.SDK_INT < 19) {
                     chooseIntent = new Intent();
                     chooseIntent.setType(stringType);
                     chooseIntent.setAction(Intent.ACTION_GET_CONTENT);
@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
                     chooseIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     chooseIntent.addCategory(Intent.CATEGORY_OPENABLE);
                     chooseIntent.setType(stringType);
-                     //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-                    //startActivityForResult(chooseIntent,1);
+                    //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                    //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
                     return;
                 }
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
@@ -227,14 +227,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    protected void onActivityResult(int n, int n2, Intent intent) {
-        Log.d(TAG, "onActivityResult() called with: n = [" + n + "], n2 = [" + n2 + "], intent = [" + intent + "]");
-        if (n == 1) {
-            this.setResult(n2, intent);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + intent + "]");
+        switch (requestCode) {
+            case GET_CONTENT_RESULT_CODE:
+                if (resultCode == RESULT_OK) {
+                    String FilePath = intent.getData().getPath();
+                    Toast.makeText(this, "GET_CONTENT_RESULT_CODE " + FilePath, Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onActivityResult: " + FilePath);
+                    this.setResult(resultCode, intent);
+                }
+                break;
+        }
+    }
+
+    protected void onActivityResult2(int requestCode, int resultCode, Intent intent) {
+        Log.d(TAG, "onActivityResult() called with: n = [" + requestCode + "], n2 = [" + resultCode + "], intent = [" + intent + "]");
+        if (requestCode == GET_CONTENT_RESULT_CODE) {
+            this.setResult(resultCode, intent);
             this.finish();
             return;
         }
-        super.onActivityResult(n, n2, intent);
+        super.onActivityResult(requestCode, resultCode, intent);
     }
 
     private Intent cleanIntent(Intent passedIntent) {
