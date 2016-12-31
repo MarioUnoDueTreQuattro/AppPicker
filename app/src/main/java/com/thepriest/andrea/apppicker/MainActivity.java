@@ -94,16 +94,18 @@ public class MainActivity extends AppCompatActivity {
                 this.startActivityForResult(chooseIntent, GET_CONTENT_RESULT_CODE);
                     return;
 */
-                if (Build.VERSION.SDK_INT < 19) {
+                if (Build.VERSION.SDK_INT < 25) {
                     chooseIntent = new Intent();
                     chooseIntent.setType(stringType);
                     chooseIntent.setAction(Intent.ACTION_GET_CONTENT);
+                    chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                    //startActivityForResult(chooseIntent, GET_CONTENT_RESULT_CODE);
                 } else {
                     chooseIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     chooseIntent.addCategory(Intent.CATEGORY_OPENABLE);
                     chooseIntent.setType(stringType);
                     //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-                    startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
+                    startActivityForResult(chooseIntent, GET_CONTENT_RESULT_CODE);
                     return;
                 }
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
@@ -118,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
 /* i.getAction() + " " +*//*
  chooseIntent.getType());
 */
-                Log.d(TAG, "onCreate: newInt DONW");
             } else if (sAction.equalsIgnoreCase("android.media.action.IMAGE_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -155,8 +156,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onCreate sAction: " + sAction);
             }
         }
-        if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT") || sAction.equalsIgnoreCase(Intent.ACTION_OPEN_DOCUMENT)) {
-            Log.d(TAG, "onCreate: sAction.equalsIgnoreCase(\"android.intent.action.GET_CONTENT");
+        if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
+            Log.d(TAG, "onCreate: android.intent.action.GET_CONTENT");
+            //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            newInt.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            //startActivityForResult(newInt,GET_CONTENT_RESULT_CODE);
+            startActivity(newInt);
+            //startActivity(newInt);
+        } else if (sAction.equalsIgnoreCase(Intent.ACTION_OPEN_DOCUMENT)) {
+            Log.d(TAG, "onCreate: Intent.ACTION_OPEN_DOCUMENT");
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
         } else startActivity(newInt);
@@ -262,10 +270,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
     }
 
-   private void startActivityWithLog(Intent intent){
-       
-   }
-    
+    private void startActivityWithLog(Intent intent) {
+
+    }
+
     private Intent cleanIntent(Intent passedIntent) {
         //Intent myIntent= passedIntent.getSelector();
         List<ResolveInfo> launchables = getPackageManager().queryIntentActivities(passedIntent, MATCH_ALL);
