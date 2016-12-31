@@ -14,7 +14,7 @@
             android:name=".MainActivity"
             android:excludeFromRecents="true"
             android:label="App Picker"
-            android:theme="@style/AppTheme"
+            android:theme="@android:style/Theme.NoDisplay"
             android:windowSoftInputMode="adjustResize"
             >
 
@@ -310,6 +310,7 @@
                     android:host="search"
                     android:path=""
                     android:scheme="market"/>
+<!--
                 <data
                     android:host="play.google.com"
                     android:pathPattern="/store/search?q=.*"
@@ -326,6 +327,7 @@
                     android:host="play.google.com"
                     android:pathPattern="/store/.*"
                     android:scheme="https"/>
+-->
             </intent-filter>
             <intent-filter android:label="View Web (App Picker)">
                 <action android:name="android.intent.action.VIEW"/>
