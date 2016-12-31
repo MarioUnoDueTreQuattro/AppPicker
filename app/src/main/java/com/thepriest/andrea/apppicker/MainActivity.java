@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 this.startActivityForResult(chooseIntent, GET_CONTENT_RESULT_CODE);
                     return;
 */
-                if (Build.VERSION.SDK_INT < 25) {
+                if (Build.VERSION.SDK_INT < 19) {
                     chooseIntent = new Intent();
                     chooseIntent.setType(stringType);
                     chooseIntent.setAction(Intent.ACTION_GET_CONTENT);
