@@ -23,6 +23,7 @@ import static android.content.pm.PackageManager.MATCH_ALL;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final int GET_CONTENT_RESULT_CODE = 1001;
     private String sAction;
 
     @Override
