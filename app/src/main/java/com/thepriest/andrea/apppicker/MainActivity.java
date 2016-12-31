@@ -234,9 +234,13 @@ public class MainActivity extends AppCompatActivity {
             case GET_CONTENT_RESULT_CODE:
                 if (resultCode == RESULT_OK) {
                     String FilePath = intent.getData().getPath();
-                    Toast.makeText(this, "GET_CONTENT_RESULT_CODE " + FilePath, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "GET_CONTENT: " + FilePath, Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onActivityResult: " + FilePath);
                     this.setResult(resultCode, intent);
+                }
+                else if (resultCode==RESULT_CANCELED) {
+                // Operation failed or cancelled. Handle in your own way.
+                    Toast.makeText(this, "GET_CONTENT resultCode: RESULT_CANCELED", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -246,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onActivityResult() called with: n = [" + requestCode + "], n2 = [" + resultCode + "], intent = [" + intent + "]");
         if (requestCode == GET_CONTENT_RESULT_CODE) {
             this.setResult(resultCode, intent);
-            this.finish();
+            //this.finish();
             return;
         }
         super.onActivityResult(requestCode, resultCode, intent);
