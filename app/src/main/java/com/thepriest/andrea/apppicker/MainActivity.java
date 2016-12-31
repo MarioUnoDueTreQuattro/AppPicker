@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         Intent chooseIntent = null;
         Intent newInt = null;
         Intent intent = this.getIntent();
-        Log.d(TAG, "onCreate: " + intent.toString());
+        if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: " + intent.toString());
         stringAction = intent.getAction();
         stringType = intent.getType();
         Log.v(TAG, "action " + stringAction);
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
-                Log.d(TAG, "onCreate: GET_CONTENT");
+                if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: GET_CONTENT");
 /*
                 chooseIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 chooseIntent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -139,32 +139,32 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_VIEW)) {
                 chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
                 if (urlText.startsWith("http")) {
-                    Log.d(TAG, "onCreate: http");
+                    if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: http");
                     chooseIntent.setDataAndType(uri, "text/html");
                     chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                     chooseIntent.addCategory("android.intent.category.BROWSABLE");
                     //i.putExtra(Intent.EXTRA_TEXT,urlText);
                     //i.setData(uri);
                 } else {
-                    Log.d(TAG, "onCreate: NO http");
+                    if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: NO http");
                     chooseIntent.setDataAndType(intent.getData(), stringType);
                 }
                 chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                 newInt = Intent.createChooser(chooseIntent, urlText);
             } else {
                 Toast.makeText(this, sAction, Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onCreate sAction: " + sAction);
+                if (BuildConfig.DEBUG) Log.d(TAG, "onCreate sAction: " + sAction);
             }
         }
         if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
-            Log.d(TAG, "onCreate: android.intent.action.GET_CONTENT");
+            if (BuildConfig.DEBUG)  Log.d(TAG, "onCreate: android.intent.action.GET_CONTENT");
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             newInt.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             //startActivityForResult(newInt,GET_CONTENT_RESULT_CODE);
             startActivity(newInt);
             //startActivity(newInt);
         } else if (sAction.equalsIgnoreCase(Intent.ACTION_OPEN_DOCUMENT)) {
-            Log.d(TAG, "onCreate: Intent.ACTION_OPEN_DOCUMENT");
+            if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: Intent.ACTION_OPEN_DOCUMENT");
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
         } else startActivity(newInt);
@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void onActivityResult2(int requestCode, int resultCode, Intent intent) {
-        Log.d(TAG, "onActivityResult2() called with: n = [" + requestCode + "], n2 = [" + resultCode + "], intent = [" + intent + "]");
+        if (BuildConfig.DEBUG) Log.d(TAG, "onActivityResult2() called with: n = [" + requestCode + "], n2 = [" + resultCode + "], intent = [" + intent + "]");
         if (requestCode == GET_CONTENT_RESULT_CODE) {
             this.setResult(resultCode, intent);
             //this.finish();
@@ -278,10 +278,10 @@ public class MainActivity extends AppCompatActivity {
         //Intent myIntent= passedIntent.getSelector();
         List<ResolveInfo> launchables = getPackageManager().queryIntentActivities(passedIntent, MATCH_ALL);
         for (ResolveInfo resInfo : launchables) {
-            Log.d(TAG, "cleanIntent: " + resInfo.resolvePackageName);
+            if (BuildConfig.DEBUG) Log.d(TAG, "cleanIntent: " + resInfo.resolvePackageName);
             if (resInfo.resolvePackageName != null) {
                 if (resInfo.resolvePackageName.equalsIgnoreCase("com.thepriest.andrea.apppicker")) {
-                    Log.d(TAG, "cleanIntent: cleaning...");
+                    if (BuildConfig.DEBUG) Log.d(TAG, "cleanIntent: cleaning...");
                     launchables.remove(resInfo);
                 }
             }
