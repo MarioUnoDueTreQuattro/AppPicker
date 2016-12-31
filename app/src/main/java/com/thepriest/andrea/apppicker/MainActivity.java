@@ -124,6 +124,10 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase("android.media.action.VIDEO_CAPTURE")) {
+                chooseIntent = new Intent(sAction, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("com.whatsapp.action.WHATSAPP_RECORDING")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);

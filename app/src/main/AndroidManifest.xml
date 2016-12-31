@@ -379,6 +379,10 @@
                 <action android:name="android.media.action.STILL_IMAGE_CAMERA"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
+            <intent-filter android:label="Video capture (App Picker)">
+                <action android:name="android.media.action.VIDEO_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
             <intent-filter android:label="Whatsapp (App Picker)">
                 <action android:name="com.whatsapp.action.WHATSAPP_RECORDING"/>
                 <category android:name="android.intent.category.DEFAULT"/>
