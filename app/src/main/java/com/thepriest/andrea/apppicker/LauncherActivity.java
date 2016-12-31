@@ -18,8 +18,8 @@ private static Context mContext;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext=getApplicationContext();
-        // setContentView(R.layout.activity_launcher);
-        finish();
+         setContentView(R.layout.activity_launcher);
+        //finish();
 
     }
 
