@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     chooseIntent.addCategory(Intent.CATEGORY_OPENABLE);
                     chooseIntent.setType(stringType);
                     //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-                    //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
+                    startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
                     return;
                 }
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 /* i.getAction() + " " +*//*
  chooseIntent.getType());
 */
+                Log.d(TAG, "onCreate: newInt DONW");
             } else if (sAction.equalsIgnoreCase("android.media.action.IMAGE_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -154,7 +155,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onCreate sAction: " + sAction);
             }
         }
-        startActivity(newInt);
+        if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT") || sAction.equalsIgnoreCase(Intent.ACTION_OPEN_DOCUMENT)) {
+            Log.d(TAG, "onCreate: sAction.equalsIgnoreCase(\"android.intent.action.GET_CONTENT");
+            //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
+        } else startActivity(newInt);
+
         this.finish();
         /**
          * return
@@ -229,25 +235,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + intent + "]");
+        //Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + intent + "]");
         switch (requestCode) {
             case GET_CONTENT_RESULT_CODE:
                 if (resultCode == RESULT_OK) {
                     String FilePath = intent.getData().getPath();
-                    Toast.makeText(this, "GET_CONTENT: " + FilePath, Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onActivityResult: " + FilePath);
+                    //Toast.makeText(this, "GET_CONTENT: " + FilePath, Toast.LENGTH_SHORT).show();
+                    //Log.d(TAG, "onActivityResult: " + FilePath);
                     this.setResult(resultCode, intent);
-                }
-                else if (resultCode==RESULT_CANCELED) {
-                // Operation failed or cancelled. Handle in your own way.
-                    Toast.makeText(this, "GET_CONTENT resultCode: RESULT_CANCELED", Toast.LENGTH_SHORT).show();
+                } else if (resultCode == RESULT_CANCELED) {
+                    // Operation failed or cancelled. Handle in your own way.
+                    //Toast.makeText(this, "GET_CONTENT resultCode: RESULT_CANCELED", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
+        finish();
     }
 
     protected void onActivityResult2(int requestCode, int resultCode, Intent intent) {
-        Log.d(TAG, "onActivityResult() called with: n = [" + requestCode + "], n2 = [" + resultCode + "], intent = [" + intent + "]");
+        Log.d(TAG, "onActivityResult2() called with: n = [" + requestCode + "], n2 = [" + resultCode + "], intent = [" + intent + "]");
         if (requestCode == GET_CONTENT_RESULT_CODE) {
             this.setResult(resultCode, intent);
             //this.finish();
@@ -256,6 +262,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
     }
 
+   private void startActivityWithLog(Intent intent){
+       
+   }
+    
     private Intent cleanIntent(Intent passedIntent) {
         //Intent myIntent= passedIntent.getSelector();
         List<ResolveInfo> launchables = getPackageManager().queryIntentActivities(passedIntent, MATCH_ALL);
