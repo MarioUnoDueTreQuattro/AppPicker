@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             if (sAction.equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_PICK)) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -123,11 +123,11 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase("android.media.action.IMAGE_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase("android.media.action.VIDEO_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase("com.whatsapp.action.WHATSAPP_RECORDING")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase("android.intent.action.RINGTONE_PICKER")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_SENDTO)) {
                 chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase("org.openintents.action.VIEW_DIRECTORY")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_VIEW)) {
                 chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
                 if (urlText.startsWith("http")) {
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 newInt = Intent.createChooser(chooseIntent, urlText);
             } else {
                 Toast.makeText(this, sAction, Toast.LENGTH_SHORT).show();
-                if (BuildConfig.DEBUG) Log.d(TAG, "onCreate sAction: " + sAction);
+                if (BuildConfig.DEBUG) Log.d(TAG, "onCreate ELSE sAction: " + sAction);
             }
         }
         if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
