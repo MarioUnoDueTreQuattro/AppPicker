@@ -176,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
         } else startActivity(newInt);
-
         this.finish();
         /**
          * return
