@@ -60,6 +60,12 @@
 
             </WebView>
             </android.support.v7.widget.CardView>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="System details"
+                android:id="@+id/button_app_detail"
+            />
 <!--
             &lt;!&ndash; Tabs &ndash;&gt;
             <android.support.design.widget.TabLayout

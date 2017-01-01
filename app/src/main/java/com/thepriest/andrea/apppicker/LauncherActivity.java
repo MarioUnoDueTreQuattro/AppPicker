@@ -9,7 +9,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
@@ -20,7 +22,7 @@ public class LauncherActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private WebView webView;
     private NavigationView navigationView;
-
+private Button button_app_detail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,13 @@ public class LauncherActivity extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
         //Uri path = Uri.parse("android.resource://com.thepriest.andrea.apppicker/" + R.raw.help);
         webView.loadUrl("file:///android_res/raw/help.html");
+        button_app_detail= (Button) findViewById(R.id.button_app_detail);
+        button_app_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public static void launchBrowser(Intent intent) {
