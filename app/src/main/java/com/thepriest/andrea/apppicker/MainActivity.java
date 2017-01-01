@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             if (sAction.equalsIgnoreCase("android.media.action.STILL_IMAGE_CAMERA")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
+                newInt = Intent.createChooser(chooseIntent, getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_PICK)) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -123,11 +123,11 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase("android.media.action.IMAGE_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
+                newInt = Intent.createChooser(chooseIntent, getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase("android.media.action.VIDEO_CAPTURE")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
+                newInt = Intent.createChooser(chooseIntent, getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase("com.whatsapp.action.WHATSAPP_RECORDING")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase("android.intent.action.RINGTONE_PICKER")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
+                newInt = Intent.createChooser(chooseIntent, getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_SENDTO)) {
                 chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase("org.openintents.action.VIEW_DIRECTORY")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,getString(R.string.app_name));
+                newInt = Intent.createChooser(chooseIntent, urlText);
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_VIEW)) {
                 chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
                 if (urlText.startsWith("http")) {
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
-            if (BuildConfig.DEBUG)  Log.d(TAG, "onCreate: android.intent.action.GET_CONTENT");
+            if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: android.intent.action.GET_CONTENT");
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             newInt.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             //startActivityForResult(newInt,GET_CONTENT_RESULT_CODE);
@@ -268,7 +268,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void onActivityResult2(int requestCode, int resultCode, Intent intent) {
-        if (BuildConfig.DEBUG) Log.d(TAG, "onActivityResult2() called with: n = [" + requestCode + "], n2 = [" + resultCode + "], intent = [" + intent + "]");
+        if (BuildConfig.DEBUG)
+            Log.d(TAG, "onActivityResult2() called with: n = [" + requestCode + "], n2 = [" + resultCode + "], intent = [" + intent + "]");
         if (requestCode == GET_CONTENT_RESULT_CODE) {
             this.setResult(resultCode, intent);
             //this.finish();
