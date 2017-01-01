@@ -1,9 +1,11 @@
 package com.thepriest.andrea.apppicker;
 
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -38,9 +40,27 @@ private Button button_app_detail;
         button_app_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+               startApplicationDetailsActivity("com.thepriest.andrea.apppicker");
             }
         });
+    }
+
+    private void startApplicationDetailsActivity(String string) {
+        Intent intent = new Intent("android.intent.action.VIEW");
+        if (Build.VERSION.SDK_INT <= 8) {
+            intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+        } else {
+            intent.setClassName("com.android.settings", "com.android.settings.applications.InstalledAppDetails");
+        }
+        intent.putExtra("pkg", string);
+        intent.setData(Uri.parse((String) ("package:" + string)));
+        try {
+            this.startActivity(intent);
+            return;
+        } catch (ActivityNotFoundException exception) {
+            exception.printStackTrace();
+            return;
+        }
     }
 
     public static void launchBrowser(Intent intent) {
