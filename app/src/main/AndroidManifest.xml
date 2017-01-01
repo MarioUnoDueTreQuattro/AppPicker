@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             -->
-            <intent-filter>
+            <intent-filter android:label="App Picker (Folder)">
                 <action android:name="org.openintents.action.VIEW_DIRECTORY" />
                 <data android:scheme="file" />
                 <category android:name="android.intent.category.DEFAULT" />
