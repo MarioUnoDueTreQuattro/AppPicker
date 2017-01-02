@@ -302,6 +302,7 @@
             <intent-filter android:label="App Picker (Edit)">
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*"/>
             </intent-filter>
         <intent-filter android:label="App Picker (Store)">
             <action android:name="android.intent.action.VIEW" />
