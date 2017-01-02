@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.thepriest.andrea.apppicker"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.thepriest.andrea.apppicker">
 
     <application
         android:allowBackup="true"
@@ -15,8 +15,7 @@
             android:excludeFromRecents="true"
             android:label="App Picker"
             android:theme="@android:style/Theme.NoDisplay"
-            android:windowSoftInputMode="adjustResize"
-            >
+            android:windowSoftInputMode="adjustResize">
 
             <!--
             <intent-filter>
@@ -30,63 +29,63 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter android:label="App Picker (Folder)">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="resource/folder"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="resource/folder" />
             </intent-filter>
             <intent-filter android:label="App Picker (Text)">
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="text/*"/>
+                <data android:mimeType="text/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Image)">
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="image/*"/>
+                <data android:mimeType="image/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Audio)">
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="audio/*"/>
+                <data android:mimeType="audio/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Video)">
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="video/*"/>
+                <data android:mimeType="video/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Message)">
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="message/*"/>
+                <data android:mimeType="message/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Application)">
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="application/*"/>
+                <data android:mimeType="application/*" />
             </intent-filter>
-<!--
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.intent.action.SENDTO"/>
+            <!--
+                        <intent-filter>
+                            <action android:name="android.intent.action.VIEW"/>
+                            <action android:name="android.intent.action.SENDTO"/>
 
-                <data android:scheme="mailto"/>
+                            <data android:scheme="mailto"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-            </intent-filter>
--->
+                            <category android:name="android.intent.category.DEFAULT"/>
+                            <category android:name="android.intent.category.BROWSABLE"/>
+                        </intent-filter>
+            -->
             <!--
                         <intent-filter android:label="App Picker">
                             <action android:name="android.intent.action.SEND"/>
@@ -104,308 +103,313 @@
                         </intent-filter>
             -->
             <intent-filter android:label="App Picker (text/html/plain)">
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:mimeType="text/html"/>
-                <data android:mimeType="text/plain"/>
-                <data android:mimeType="plain/text"/>
+                <data android:mimeType="text/html" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="plain/text" />
 
                 <intent-filter android:label="App Picker (Content)">
-                    <action android:name="android.intent.action.VIEW"/>
-                    <category android:name="android.intent.category.DEFAULT"/>
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
 
-                    <data android:scheme="http"/>
-                    <data android:scheme="https"/>
-                    <data android:scheme="content"/>
-                    <data android:scheme="file"/>
-                    <data android:scheme=""/>
-                    <data android:mimeType="image/*"/>
+                    <data android:scheme="http" />
+                    <data android:scheme="https" />
+                    <data android:scheme="content" />
+                    <data android:scheme="file" />
+                    <data android:scheme="" />
+                    <data android:mimeType="image/*" />
                 </intent-filter>
                 <intent-filter android:label="App Picker (Content)">
-                    <action android:name="android.intent.action.VIEW"/>
-                    <category android:name="android.intent.category.DEFAULT"/>
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
 
-                    <data android:scheme="http"/>
-                    <data android:scheme="https"/>
-                    <data android:scheme="content"/>
-                    <data android:scheme="file"/>
-                    <data android:mimeType="video/*"/>
+                    <data android:scheme="http" />
+                    <data android:scheme="https" />
+                    <data android:scheme="content" />
+                    <data android:scheme="file" />
+                    <data android:mimeType="video/*" />
                 </intent-filter>
                 <intent-filter android:label="App Picker (Content)">
-                    <action android:name="android.intent.action.VIEW"/>
-                    <category android:name="android.intent.category.DEFAULT"/>
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
 
-                    <data android:scheme="http"/>
-                    <data android:scheme="https"/>
-                    <data android:scheme="content"/>
-                    <data android:scheme="file"/>
-                    <data android:mimeType="audio/*"/>
-                    <data android:mimeType="application/ogg"/>
-                    <data android:mimeType="application/x-ogg"/>
-                    <data android:mimeType="application/itunes"/>
+                    <data android:scheme="http" />
+                    <data android:scheme="https" />
+                    <data android:scheme="content" />
+                    <data android:scheme="file" />
+                    <data android:mimeType="audio/*" />
+                    <data android:mimeType="application/ogg" />
+                    <data android:mimeType="application/x-ogg" />
+                    <data android:mimeType="application/itunes" />
                 </intent-filter>
                 <intent-filter android:label="App Picker (Content)">
-                    <action android:name="android.intent.action.VIEW"/>
-                    <category android:name="android.intent.category.DEFAULT"/>
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
 
-                    <data android:scheme="http"/>
-                    <data android:scheme="https"/>
-                    <data android:scheme="content"/>
-                    <data android:scheme="file"/>
-                    <data android:host="*"/>
-                    <data android:pathPattern=".*\\.mp3"/>
-                    <data android:pathPattern=".*\\.mpga"/>
-                    <data android:pathPattern=".*\\.ogg"/>
-                    <data android:mimeType="*/*"/>
+                    <data android:scheme="http" />
+                    <data android:scheme="https" />
+                    <data android:scheme="content" />
+                    <data android:scheme="file" />
+                    <data android:host="*" />
+                    <data android:pathPattern=".*\\.mp3" />
+                    <data android:pathPattern=".*\\.mpga" />
+                    <data android:pathPattern=".*\\.ogg" />
+                    <data android:mimeType="*/*" />
                 </intent-filter>
             </intent-filter>
             <intent-filter android:label="App Picker (Content)">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="content"/>
-                <data android:scheme="file"/>
-                <data android:scheme=""/>
-                <data android:mimeType="image/*"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:scheme="" />
+                <data android:mimeType="image/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Content)">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="content"/>
-                <data android:scheme="file"/>
-                <data android:mimeType="video/*"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="video/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Content)">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="content"/>
-                <data android:scheme="file"/>
-                <data android:mimeType="audio/*"/>
-                <data android:mimeType="application/ogg"/>
-                <data android:mimeType="application/x-ogg"/>
-                <data android:mimeType="application/itunes"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/ogg" />
+                <data android:mimeType="application/x-ogg" />
+                <data android:mimeType="application/itunes" />
             </intent-filter>
             <intent-filter android:label="App Picker (Content)">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="content"/>
-                <data android:scheme="file"/>
-                <data android:host="*"/>
-                <data android:pathPattern=".*\\.mp3"/>
-                <data android:pathPattern=".*\\.mpga"/>
-                <data android:pathPattern=".*\\.ogg"/>
-                <data android:mimeType="*/*"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\.mp3" />
+                <data android:pathPattern=".*\\.mpga" />
+                <data android:pathPattern=".*\\.ogg" />
+                <data android:mimeType="*/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Content...)">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="content"/>
-                <data android:scheme="file"/>
-                <data android:host="*"/>
-                <data android:pathPattern=".*\\.pdf"/>
-                <data android:pathPattern=".*\\.doc"/>
-                <data android:pathPattern=".*\\.docx"/>
-                <data android:pathPattern=".*\\.xls"/>
-                <data android:pathPattern=".*\\.xlsx"/>
-                <data android:pathPattern=".*\\.ppt"/>
-                <data android:pathPattern=".*\\.pptx"/>
-                <data android:mimeType="*/*"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\.pdf" />
+                <data android:pathPattern=".*\\.doc" />
+                <data android:pathPattern=".*\\.docx" />
+                <data android:pathPattern=".*\\.xls" />
+                <data android:pathPattern=".*\\.xlsx" />
+                <data android:pathPattern=".*\\.ppt" />
+                <data android:pathPattern=".*\\.pptx" />
+                <data android:mimeType="*/*" />
 
                 <intent-filter>
-                    <action android:name="android.intent.action.VIEW"/>
+                    <action android:name="android.intent.action.VIEW" />
 
-                    <category android:name="android.intent.category.BROWSABLE"/>
-                    <category android:name="android.intent.category.DEFAULT"/>
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <category android:name="android.intent.category.DEFAULT" />
 
-                    <data android:scheme="http"/>
-                    <data android:scheme="https"/>
-                    <data android:host="*"/>
-                    <data android:pathPattern=".*\\.aaf"/>
-                    <data android:pathPattern=".*\\.3gp"/>
-                    <data android:pathPattern=".*\\.avi"/>
-                    <data android:pathPattern=".*\\.flv"/>
-                    <data android:pathPattern=".*\\.mpg"/>
-                    <data android:pathPattern=".*\\.mpeg"/>
-                    <data android:pathPattern=".*\\.mkv"/>
-                    <data android:pathPattern=".*\\.mp4"/>
-                    <data android:pathPattern=".*\\.mov"/>
-                    <data android:pathPattern=".*\\.ogg"/>
-                    <data android:pathPattern=".*\\.wmv"/>
-                    <data android:pathPattern=".*\\.ts"/>
-                    <data android:pathPattern=".*\\.gvp"/>
-                    <data android:pathPattern=".*\\.ogm"/>
-                    <data android:pathPattern=".*\\.ogv"/>
-                    <data android:pathPattern=".*\\.3ga"/>
-                    <data android:pathPattern=".*\\.3gp2"/>
-                    <data android:pathPattern=".*\\.webm"/>
-                    <data android:pathPattern=".*\\.rm"/>
+                    <data android:scheme="http" />
+                    <data android:scheme="https" />
+                    <data android:host="*" />
+                    <data android:pathPattern=".*\\.aaf" />
+                    <data android:pathPattern=".*\\.3gp" />
+                    <data android:pathPattern=".*\\.avi" />
+                    <data android:pathPattern=".*\\.flv" />
+                    <data android:pathPattern=".*\\.mpg" />
+                    <data android:pathPattern=".*\\.mpeg" />
+                    <data android:pathPattern=".*\\.mkv" />
+                    <data android:pathPattern=".*\\.mp4" />
+                    <data android:pathPattern=".*\\.mov" />
+                    <data android:pathPattern=".*\\.ogg" />
+                    <data android:pathPattern=".*\\.wmv" />
+                    <data android:pathPattern=".*\\.ts" />
+                    <data android:pathPattern=".*\\.gvp" />
+                    <data android:pathPattern=".*\\.ogm" />
+                    <data android:pathPattern=".*\\.ogv" />
+                    <data android:pathPattern=".*\\.3ga" />
+                    <data android:pathPattern=".*\\.3gp2" />
+                    <data android:pathPattern=".*\\.webm" />
+                    <data android:pathPattern=".*\\.rm" />
                 </intent-filter>
             </intent-filter>
             <intent-filter android:label="App Picker (Content)">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="content"/>
-                <data android:scheme="file"/>
-                <data android:host="*"/>
-                <data android:pathPattern=".*\\.pdf"/>
-                <data android:pathPattern=".*\\.doc"/>
-                <data android:pathPattern=".*\\.docx"/>
-                <data android:pathPattern=".*\\.xls"/>
-                <data android:pathPattern=".*\\.xlsx"/>
-                <data android:pathPattern=".*\\.ppt"/>
-                <data android:pathPattern=".*\\.pptx"/>
-                <data android:mimeType="*/*"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\.pdf" />
+                <data android:pathPattern=".*\\.doc" />
+                <data android:pathPattern=".*\\.docx" />
+                <data android:pathPattern=".*\\.xls" />
+                <data android:pathPattern=".*\\.xlsx" />
+                <data android:pathPattern=".*\\.ppt" />
+                <data android:pathPattern=".*\\.pptx" />
+                <data android:mimeType="*/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (application/zip)">
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:mimeType="application/zip"/>
+                <data android:mimeType="application/zip" />
             </intent-filter>
             <intent-filter android:label="App Picker (Pick)">
-                <action android:name="android.intent.action.PICK"/>
+                <action android:name="android.intent.action.PICK" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.OPENABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
 
-                <data android:mimeType="*/*"/>
+                <data android:mimeType="*/*" />
             </intent-filter>
             <intent-filter android:label="App Picker (Get content)">
                 <action android:name="android.intent.action.GET_CONTENT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.OPENABLE" />
+
                 <data android:mimeType="*/*" />
             </intent-filter>
-            <intent-filter android:label="App Picker (Store)">
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data
-                    android:host="search"
-                    android:scheme="market"/>
-                <data
-                    android:host="details"
-                    android:path=""
-                    android:scheme="market"/>
-                <data
-                    android:host="search"
-                    android:path=""
-                    android:scheme="market"/>
-<!--
-                <data
-                    android:host="play.google.com"
-                    android:pathPattern="/store/search?q=.*"
-                    android:scheme="http"/>
-                <data
-                    android:host="play.google.com"
-                    android:pathPattern="/store/search?q=.*"
-                    android:scheme="https"/>
-                <data
-                    android:host="play.google.com"
-                    android:pathPattern="/store/.*"
-                    android:scheme="http"/>
-                <data
-                    android:host="play.google.com"
-                    android:pathPattern="/store/.*"
-                    android:scheme="https"/>
--->
-            </intent-filter>
-            <intent-filter android:label="App Picker (View Web)">
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="*"/>
-                <data android:pathPattern=".*\\.aaf"/>
-                <data android:pathPattern=".*\\.3gp"/>
-                <data android:pathPattern=".*\\.avi"/>
-                <data android:pathPattern=".*\\.flv"/>
-                <data android:pathPattern=".*\\.mpg"/>
-                <data android:pathPattern=".*\\.mpeg"/>
-                <data android:pathPattern=".*\\.mkv"/>
-                <data android:pathPattern=".*\\.mp4"/>
-                <data android:pathPattern=".*\\.mov"/>
-                <data android:pathPattern=".*\\.ogg"/>
-                <data android:pathPattern=".*\\.wmv"/>
-                <data android:pathPattern=".*\\.ts"/>
-                <data android:pathPattern=".*\\.gvp"/>
-                <data android:pathPattern=".*\\.ogm"/>
-                <data android:pathPattern=".*\\.ogv"/>
-                <data android:pathPattern=".*\\.3ga"/>
-                <data android:pathPattern=".*\\.3gp2"/>
-                <data android:pathPattern=".*\\.webm"/>
-                <data android:pathPattern=".*\\.rm"/>
-            </intent-filter>
-            <intent-filter android:label="App Picker (Browser)">
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-            </intent-filter>
-            <intent-filter android:label="App Picker (Ringtone)">
-                <action android:name="android.intent.action.RINGTONE_PICKER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <intent-filter android:label="App Picker (Image capture)">
-                <action android:name="android.media.action.IMAGE_CAPTURE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <intent-filter android:label="App Picker (Camera)">
-                <action android:name="android.media.action.STILL_IMAGE_CAMERA"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <intent-filter android:label="App Picker (Video capture)">
-                <action android:name="android.media.action.VIDEO_CAPTURE" />
+            <intent-filter android:label="App Picker (Edit)">
+                <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <intent-filter android:label="App Picker (Whatsapp)">
-                <action android:name="com.whatsapp.action.WHATSAPP_RECORDING"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="audio/*"/>
-            </intent-filter>
+        <intent-filter android:label="App Picker (Store)">
+            <action android:name="android.intent.action.VIEW" />
 
-        </activity>
-        <activity
-            android:name=".LauncherActivity"
-            android:label="App Picker"
-            android:theme="@style/AppTheme"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-    </application>
+            <data
+                android:host="search"
+                android:scheme="market" />
+            <data
+                android:host="details"
+                android:path=""
+                android:scheme="market" />
+            <data
+                android:host="search"
+                android:path=""
+                android:scheme="market" />
+            <!--
+                            <data
+                                android:host="play.google.com"
+                                android:pathPattern="/store/search?q=.*"
+                                android:scheme="http"/>
+                            <data
+                                android:host="play.google.com"
+                                android:pathPattern="/store/search?q=.*"
+                                android:scheme="https"/>
+                            <data
+                                android:host="play.google.com"
+                                android:pathPattern="/store/.*"
+                                android:scheme="http"/>
+                            <data
+                                android:host="play.google.com"
+                                android:pathPattern="/store/.*"
+                                android:scheme="https"/>
+            -->
+        </intent-filter>
+        <intent-filter android:label="App Picker (View Web)">
+            <action android:name="android.intent.action.VIEW" />
 
-</manifest>
+            <category android:name="android.intent.category.BROWSABLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:scheme="http" />
+            <data android:scheme="https" />
+            <data android:host="*" />
+            <data android:pathPattern=".*\\.aaf" />
+            <data android:pathPattern=".*\\.3gp" />
+            <data android:pathPattern=".*\\.avi" />
+            <data android:pathPattern=".*\\.flv" />
+            <data android:pathPattern=".*\\.mpg" />
+            <data android:pathPattern=".*\\.mpeg" />
+            <data android:pathPattern=".*\\.mkv" />
+            <data android:pathPattern=".*\\.mp4" />
+            <data android:pathPattern=".*\\.mov" />
+            <data android:pathPattern=".*\\.ogg" />
+            <data android:pathPattern=".*\\.wmv" />
+            <data android:pathPattern=".*\\.ts" />
+            <data android:pathPattern=".*\\.gvp" />
+            <data android:pathPattern=".*\\.ogm" />
+            <data android:pathPattern=".*\\.ogv" />
+            <data android:pathPattern=".*\\.3ga" />
+            <data android:pathPattern=".*\\.3gp2" />
+            <data android:pathPattern=".*\\.webm" />
+            <data android:pathPattern=".*\\.rm" />
+        </intent-filter>
+        <intent-filter android:label="App Picker (Browser)">
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.BROWSABLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:scheme="http" />
+            <data android:scheme="https" />
+        </intent-filter>
+        <intent-filter android:label="App Picker (Ringtone)">
+            <action android:name="android.intent.action.RINGTONE_PICKER" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        <intent-filter android:label="App Picker (Image capture)">
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        <intent-filter android:label="App Picker (Camera)">
+            <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        <intent-filter android:label="App Picker (Video capture)">
+            <action android:name="android.media.action.VIDEO_CAPTURE" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+        <intent-filter android:label="App Picker (Whatsapp)">
+            <action android:name="com.whatsapp.action.WHATSAPP_RECORDING" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="audio/*" />
+        </intent-filter>
+
+    </activity>
+    <activity
+        android:name=".LauncherActivity"
+        android:label="App Picker"
+        android:theme="@style/AppTheme">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+</application>
+
+    </manifest>

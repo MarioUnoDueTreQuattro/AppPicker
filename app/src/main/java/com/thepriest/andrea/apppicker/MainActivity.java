@@ -140,6 +140,10 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+            } else if (sAction.equalsIgnoreCase(Intent.ACTION_EDIT)) {
+                chooseIntent = new Intent(Intent.ACTION_EDIT, uri);
+                chooseIntent.setDataAndType(intent.getData(), stringType);
+                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("org.openintents.action.VIEW_DIRECTORY")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
