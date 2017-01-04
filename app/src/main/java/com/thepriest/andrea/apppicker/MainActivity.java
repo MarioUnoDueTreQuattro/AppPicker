@@ -153,8 +153,10 @@ public class MainActivity extends AppCompatActivity {
                 if (urlText.startsWith("http")) {
                     if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: http");
                     chooseIntent.setDataAndType(uri, "text/html");
-                    chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-                    chooseIntent.addCategory("android.intent.category.BROWSABLE");
+                    chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                    chooseIntent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    chooseIntent.setClipData(intent.getClipData());
+                    chooseIntent.putExtras(intent);
                     //i.putExtra(Intent.EXTRA_TEXT,urlText);
                     //i.setData(uri);
                 } else {
@@ -163,6 +165,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                 newInt = Intent.createChooser(chooseIntent, urlText);
+ /*
+  newInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+                newInt.setClipData(intent.getClipData());
+                newInt.putExtras(intent);
+*/
             } else {
                 Toast.makeText(this, sAction, Toast.LENGTH_SHORT).show();
                 if (BuildConfig.DEBUG) Log.d(TAG, "onCreate ELSE sAction: " + sAction);
