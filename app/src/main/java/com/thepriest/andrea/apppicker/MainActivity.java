@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     chooseIntent.putExtras(intent);
                     //i.putExtra(Intent.EXTRA_TEXT,urlText);
                     //i.setData(uri);
-                } else {
+                   } else {
                     if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: NO http");
                     chooseIntent.setDataAndType(intent.getData(), stringType);
                 }
@@ -288,6 +288,21 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         super.onActivityResult(requestCode, resultCode, intent);
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(TAG, "onStart() called");
+        super.onStart();
+    }
+
+    /**
+     * Dispatch onPause() to fragments.
+     */
+    @Override
+    protected void onPause() {
+        Log.d(TAG, "onPause() called");
+        super.onPause();
     }
 
     private void startActivityWithLog(Intent intent) {
