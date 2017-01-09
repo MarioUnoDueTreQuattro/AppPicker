@@ -157,7 +157,9 @@ public class MainActivity extends AppCompatActivity {
                     chooseIntent.addCategory(Intent.CATEGORY_BROWSABLE);
                     chooseIntent.setClipData(intent.getClipData());
                     chooseIntent.putExtras(intent);
-                    //i.putExtra(Intent.EXTRA_TEXT,urlText);
+                    //chooseIntent.fillIn(intent,0);
+                    //chooseIntent.setSelector(intent);
+//i.putExtra(Intent.EXTRA_TEXT,urlText);
                     //i.setData(uri);
                    } else {
                     if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: NO http");
@@ -208,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onCreate: http");
                 i.setDataAndType(uri, "text/html");
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                //i.fillIn(intent,0);
+                //i.setSelector(intent);
                 //i.putExtra(Intent.EXTRA_TEXT,urlText);
                 //i.setData(uri);
             } else {
