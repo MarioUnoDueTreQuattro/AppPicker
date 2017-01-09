@@ -98,30 +98,6 @@
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView android:id="@+id/cardView"
-                                                    xmlns:android="http://schemas.android.com/apk/res/android"
-                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                    xmlns:card_view="http://schemas.android.com/tools"
-                                                    android:layout_width="fill_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:elevation="4dp"
-                                                    android:paddingBottom="0dp"
-                                                    app:cardCornerRadius="4dp"
-                                                    app:cardElevation="4dp"
-                                                    app:cardPreventCornerOverlap="false"
-                                                    app:cardUseCompatPadding="true"
-                                                    app:contentPadding="8dp"
-                    >
-
-                    <WebView
-                        android:id="@+id/webView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </WebView>
-                </android.support.v7.widget.CardView>
-
                 <android.support.v7.widget.CardView android:id="@+id/cardView2"
                                                     xmlns:android="http://schemas.android.com/apk/res/android"
                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -158,6 +134,30 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView android:id="@+id/cardView"
+                                                    xmlns:android="http://schemas.android.com/apk/res/android"
+                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                    xmlns:card_view="http://schemas.android.com/tools"
+                                                    android:layout_width="fill_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:elevation="4dp"
+                                                    android:paddingBottom="0dp"
+                                                    app:cardCornerRadius="4dp"
+                                                    app:cardElevation="4dp"
+                                                    app:cardPreventCornerOverlap="false"
+                                                    app:cardUseCompatPadding="true"
+                                                    app:contentPadding="8dp"
+                    >
+
+                    <WebView
+                        android:id="@+id/webView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </WebView>
+                </android.support.v7.widget.CardView>
+
 
                 <!--
                             &lt;!&ndash; Tabs &ndash;&gt;
