@@ -82,7 +82,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Based on..."
+                            android:text="Based on Alternative App Picker (Apps By Usman)"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:autoLink="web"
+                            android:text="https://play.google.com/store/apps/details?id=com.appsbyusman.alternativeapppicker"
                             />
                     </LinearLayout>
 
