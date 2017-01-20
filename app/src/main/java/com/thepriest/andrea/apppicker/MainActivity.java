@@ -82,9 +82,15 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 newInt = Intent.createChooser(chooseIntent, getString(R.string.app_name));
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_PICK)) {
-                chooseIntent = new Intent(sAction, uri);
-                chooseIntent.setDataAndType(intent.getData(), stringType);
+                chooseIntent = new Intent();
+                chooseIntent.setType(stringType);
+                chooseIntent.setAction(Intent.ACTION_GET_CONTENT);
+                chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+
+//                chooseIntent = new Intent(sAction, uri);
+//                chooseIntent.setDataAndType(intent.getData(), stringType);
+//                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
                 if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: GET_CONTENT");
 /*
@@ -189,6 +195,13 @@ public class MainActivity extends AppCompatActivity {
             if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: Intent.ACTION_OPEN_DOCUMENT");
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
+        }else if (sAction.equalsIgnoreCase(Intent.ACTION_PICK)) {
+            if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: Intent.ACTION_PICK");
+            //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
+            newInt.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            //startActivityForResult(newInt,GET_CONTENT_RESULT_CODE);
+            startActivity(newInt);
         } else startActivity(newInt);
         this.finish();
         /**
