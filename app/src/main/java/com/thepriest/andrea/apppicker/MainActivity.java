@@ -184,6 +184,9 @@ public class MainActivity extends AppCompatActivity {
                 if (BuildConfig.DEBUG) Log.d(TAG, "onCreate ELSE sAction: " + sAction);
             }
         }
+        /**
+         * Start intents
+         */
         if (sAction.equalsIgnoreCase("android.intent.action.GET_CONTENT")) {
             if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: android.intent.action.GET_CONTENT");
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
