@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase("org.openintents.action.VIEW_DIRECTORY")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent, urlText);
+                newInt = Intent.createChooser(chooseIntent, uri.getPath());
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_VIEW)) {
                 chooseIntent = new Intent(Intent.ACTION_VIEW, uri);
                 if (urlText.startsWith("http")) {
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                     chooseIntent.setDataAndType(intent.getData(), stringType);
                 }
                 chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-                newInt = Intent.createChooser(chooseIntent, urlText);
+                newInt = Intent.createChooser(chooseIntent, uri.getPath());
  /*
   newInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
