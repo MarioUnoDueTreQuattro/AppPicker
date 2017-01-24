@@ -149,7 +149,9 @@ public class MainActivity extends AppCompatActivity {
             } else if (sAction.equalsIgnoreCase(Intent.ACTION_EDIT)) {
                 chooseIntent = new Intent(Intent.ACTION_EDIT, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
-                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
+                logUri(uri);
+                newInt = Intent.createChooser(chooseIntent, urlText);
+//                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("org.openintents.action.VIEW_DIRECTORY")) {
                 chooseIntent = new Intent(sAction, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
@@ -159,20 +161,33 @@ public class MainActivity extends AppCompatActivity {
                 if (urlText.startsWith("http")) {
                     if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: http");
                     chooseIntent.setDataAndType(uri, "text/html");
-                    chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                    chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                     chooseIntent.addCategory(Intent.CATEGORY_BROWSABLE);
                     chooseIntent.setClipData(intent.getClipData());
                     chooseIntent.putExtras(intent);
+                    chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                    //newInt = Intent.createChooser(chooseIntent, uri.getHost() + uri.getPath());
+                    logUri(uri);
+                    newInt = Intent.createChooser(chooseIntent, urlText);
                     //chooseIntent.fillIn(intent,0);
                     //chooseIntent.setSelector(intent);
 //i.putExtra(Intent.EXTRA_TEXT,urlText);
                     //i.setData(uri);
-                   } else {
+                } else {
                     if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: NO http");
                     chooseIntent.setDataAndType(intent.getData(), stringType);
+                    chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                    logUri(uri);
+                    newInt = Intent.createChooser(chooseIntent,/*uri.getPath()+"\n"+*/ urlText);
                 }
-                chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-                newInt = Intent.createChooser(chooseIntent, uri.getPath());
+/*
+                 if   (uri.getScheme()!=null){
+                     if (uri.getScheme().equalsIgnoreCase("market"))
+                         newInt = Intent.createChooser(chooseIntent, urlText);
+                 }
+                    else newInt = Intent.createChooser(chooseIntent, uri.getPath());
+                }
+*/
  /*
   newInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
@@ -198,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
             if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: Intent.ACTION_OPEN_DOCUMENT");
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
-        }else if (sAction.equalsIgnoreCase(Intent.ACTION_PICK)) {
+        } else if (sAction.equalsIgnoreCase(Intent.ACTION_PICK)) {
             if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: Intent.ACTION_PICK");
             //chooseIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             //startActivityForResult(chooseIntent,GET_CONTENT_RESULT_CODE);
@@ -278,6 +293,23 @@ public class MainActivity extends AppCompatActivity {
 
         this.finish();
 
+    }
+
+    private void logUri(Uri uri) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "NO http: " + uri.getScheme());
+            Log.d(TAG, "NO http: " + uri.getAuthority());
+            Log.d(TAG, "NO http: " + uri.getEncodedAuthority());
+            Log.d(TAG, "NO http: " + uri.getEncodedFragment());
+            Log.d(TAG, "NO http: " + uri.getEncodedQuery());
+            Log.d(TAG, "NO http: " + uri.getEncodedSchemeSpecificPart());
+            Log.d(TAG, "NO http: " + uri.getEncodedUserInfo());
+            Log.d(TAG, "NO http: " + uri.getLastPathSegment()); // path
+            Log.d(TAG, "NO http: " + uri.getPath()); // path
+            Log.d(TAG, "NO http: " + uri.getEncodedPath());
+            Log.d(TAG, "NO http: " + uri.getQuery());
+            Log.d(TAG, "NO http: " + uri.getUserInfo());
+        }
     }
 
     @Override
