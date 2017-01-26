@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 chooseIntent = new Intent(Intent.ACTION_EDIT, uri);
                 chooseIntent.setDataAndType(intent.getData(), stringType);
                 logUri(uri);
-                newInt = Intent.createChooser(chooseIntent, urlText);
+                newInt = Intent.createChooser(chooseIntent, urlText.replace("%20", " "));
 //                newInt = Intent.createChooser(chooseIntent,/* i.getAction() + " " +*/ chooseIntent.getType());
             } else if (sAction.equalsIgnoreCase("org.openintents.action.VIEW_DIRECTORY")) {
                 chooseIntent = new Intent(sAction, uri);
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                     //newInt = Intent.createChooser(chooseIntent, uri.getHost() + uri.getPath());
                     logUri(uri);
-                    newInt = Intent.createChooser(chooseIntent, urlText);
+                    newInt = Intent.createChooser(chooseIntent, urlText.replace("%20", " "));
                     //chooseIntent.fillIn(intent,0);
                     //chooseIntent.setSelector(intent);
 //i.putExtra(Intent.EXTRA_TEXT,urlText);
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                     chooseIntent.setDataAndType(intent.getData(), stringType);
                     chooseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                     logUri(uri);
-                    newInt = Intent.createChooser(chooseIntent,/*uri.getPath()+"\n"+*/ urlText);
+                    newInt = Intent.createChooser(chooseIntent,/*uri.getPath()+"\n"+*/ urlText.replace("%20", " "));
                 }
 /*
                  if   (uri.getScheme()!=null){
