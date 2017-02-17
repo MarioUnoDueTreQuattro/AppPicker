@@ -14,8 +14,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.danylovolokh.androidlogger.AndroidLogger;
-
 import org.apache.http.HttpVersion;
 
 import java.util.ArrayList;
@@ -70,7 +68,11 @@ public class MainActivity extends AppCompatActivity {
         Intent newInt = null;
         Intent intent = this.getIntent();
         if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: " + intent.toString());
-        AndroidLogger.d(TAG, "onCreate: " + intent.toString());
+/*
+        int iRes= MyApplication.MyVonaLogger.writeLog(TAG, "onCreate: " + intent.toString());
+        if (iRes==0) Log.d(TAG, "MyVonaLogger error");
+*/
+//        AndroidLogger.d(TAG, "onCreate: " + intent.toString());
         stringAction = intent.getAction();
         stringType = intent.getType();
         Log.v(TAG, "action " + stringAction);
@@ -225,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
             //startActivityForResult(newInt,GET_CONTENT_RESULT_CODE);
             startActivity(newInt);
         } else startActivity(newInt);
+/*
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -235,7 +238,8 @@ public class MainActivity extends AppCompatActivity {
                 // handler.postDelayed(this, 2000);
             }
         }, 1000);
-      //  this.finish();
+*/
+        this.finish();
         /**
          * return
          */
