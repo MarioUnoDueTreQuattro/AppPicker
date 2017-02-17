@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -224,7 +225,17 @@ public class MainActivity extends AppCompatActivity {
             //startActivityForResult(newInt,GET_CONTENT_RESULT_CODE);
             startActivity(newInt);
         } else startActivity(newInt);
-        this.finish();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Runtime.getRuntime().exit(0);
+                // finish();
+                //Do something after 100ms
+                // handler.postDelayed(this, 2000);
+            }
+        }, 1000);
+      //  this.finish();
         /**
          * return
          */
