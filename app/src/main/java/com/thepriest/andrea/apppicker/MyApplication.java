@@ -30,13 +30,15 @@ public class MyApplication extends Application {
             AndroidLogger.initialize(
                     this,
                     logsDirectory,
-                    "Log_File_Name",
+                    "Intents",
                     logFileMaxSizeBytes,
                     false
             );
         } catch (IOException e) {
+            Log.d(TAG, "IOException: "+e.toString());
             // Some error happened - most likely there is no free space on the system
         }
+        AndroidLogger.w("TAG", "Warn Message");
     }
 
 }
