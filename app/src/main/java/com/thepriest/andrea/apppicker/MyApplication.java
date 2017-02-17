@@ -3,6 +3,11 @@ package com.thepriest.andrea.apppicker;
 import android.app.Application;
 import android.util.Log;
 
+import com.danylovolokh.androidlogger.AndroidLogger;
+
+import java.io.File;
+import java.io.IOException;
+
 public class MyApplication extends Application {
     private static final String TAG = "MyApplication";
 
@@ -19,6 +24,19 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         if (BuildConfig.DEBUG) Log.d(TAG, "onCreateMyApplication");
+        File logsDirectory = AndroidLogger.getDefaultLogFilesDirectory(this);
+        int logFileMaxSizeBytes = 2 * 1024 * 1024; // 2Mb
+        try {
+            AndroidLogger.initialize(
+                    this,
+                    logsDirectory,
+                    "Log_File_Name",
+                    logFileMaxSizeBytes,
+                    false
+            );
+        } catch (IOException e) {
+            // Some error happened - most likely there is no free space on the system
+        }
     }
 
 }

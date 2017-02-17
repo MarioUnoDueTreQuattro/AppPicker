@@ -16,6 +16,8 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.danylovolokh.androidlogger.AndroidLogger;
+
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class LauncherActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ private Button button_app_detail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AndroidLogger.d(TAG, "onCreate");
         mContext = getApplicationContext();
         setContentView(R.layout.activity_launcher);
         //finish();

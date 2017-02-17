@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.danylovolokh.androidlogger.AndroidLogger;
+
 import org.apache.http.HttpVersion;
 
 import java.util.ArrayList;
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Intent newInt = null;
         Intent intent = this.getIntent();
         if (BuildConfig.DEBUG) Log.d(TAG, "onCreate: " + intent.toString());
+        AndroidLogger.d(TAG, "onCreate: " + intent.toString());
         stringAction = intent.getAction();
         stringType = intent.getType();
         Log.v(TAG, "action " + stringAction);
