@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_INSTALL_SESSIONS"/>
     <uses-permission android:name="android.permission.INSTALL_PACKAGES"/>
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
-
+    <uses-permission android:name="android.permission.BIND_PACKAGE_VERIFIER"/>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -83,17 +83,30 @@
 
                 <data android:mimeType="application/*" />
             </intent-filter>
+            <intent-filter android:label="App Picker (Application APK)">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="application/vnd.android.package-archive" />
+            </intent-filter>
+            <intent-filter android:label="App Picker (Application verifier)">
+                <action android:name="android.intent.action.PACKAGE_NEEDS_VERIFICATION" />
+                <action android:name="android.intent.action.PACKAGE_VERIFIED" />
+                <data android:mimeType="application/vnd.android.package-archive" />
+            </intent-filter>
+
             <!--
-                        <intent-filter>
-                            <action android:name="android.intent.action.VIEW"/>
-                            <action android:name="android.intent.action.SENDTO"/>
+                                  <intent-filter>
+                                      <action android:name="android.intent.action.VIEW"/>
+                                      <action android:name="android.intent.action.SENDTO"/>
 
-                            <data android:scheme="mailto"/>
+                                      <data android:scheme="mailto"/>
 
-                            <category android:name="android.intent.category.DEFAULT"/>
-                            <category android:name="android.intent.category.BROWSABLE"/>
-                        </intent-filter>
-            -->
+                                      <category android:name="android.intent.category.DEFAULT"/>
+                                      <category android:name="android.intent.category.BROWSABLE"/>
+                                  </intent-filter>
+                      -->
             <!--
                         <intent-filter android:label="App Picker">
                             <action android:name="android.intent.action.SEND"/>
